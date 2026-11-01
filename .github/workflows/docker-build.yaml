@@ -23,7 +23,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.24'
+          go-version-file: 'go.mod'
           cache: true
 
       - name: Set up Node.js
@@ -35,10 +35,11 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
-      - name: Build emails & relay
+      - name: Build emails & compile Relay
         run: |
           npm --workspace @probo/emails run build
-          npx relay-compiler
+          chmod +x ./contrib/merge-graphql-schema.sh
+          make relay
 
       - name: Build frontend apps
         run: |

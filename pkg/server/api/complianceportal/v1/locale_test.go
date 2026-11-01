@@ -77,6 +77,12 @@ func TestRewriteContinueURLLocale(t *testing.T) {
 			locale:      "fr",
 			want:        "/fr/documents",
 		},
+		{
+			name:        "rewrites to hyphenated locale",
+			continueURL: "/en/documents",
+			locale:      "zh-tw",
+			want:        "/zh-tw/documents",
+		},
 	}
 
 	for _, tt := range tests {

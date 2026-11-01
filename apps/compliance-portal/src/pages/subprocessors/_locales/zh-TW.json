@@ -1,0 +1,110 @@
+{
+  "title": "次處理者",
+  "filters": {
+    "allCategories": "所有類別",
+    "allRegions": "所有地區",
+    "searchPlaceholder": "搜尋…"
+  },
+  "empty": {
+    "title": "尚無次處理者清單。",
+    "description": "此合規入口尚未發布任何次處理者。",
+    "filteredTitle": "沒有符合篩選條件的次處理者。",
+    "filteredDescription": "請調整您的搜尋或篩選條件以檢視可用的次處理者。",
+    "clearFilters": "清除篩選條件"
+  },
+  "regions": {
+    "global": "全球",
+    "eu": "歐盟",
+    "moreRegions": "顯示其他 {{count}} 個地區"
+  },
+  "categories": {
+    "ANALYTICS": {
+      "label": "分析",
+      "description": "使用狀況分析與產品遙測數據。"
+    },
+    "CLOUD_MONITORING": {
+      "label": "雲端監控",
+      "description": "可觀測性、記錄與正常運作時間監控。"
+    },
+    "CLOUD_PROVIDER": {
+      "label": "雲端服務供應商",
+      "description": "雲端託管、運算、儲存與網路服務。"
+    },
+    "COLLABORATION": {
+      "label": "團隊協作",
+      "description": "通訊、排程與團隊協同作業工具。"
+    },
+    "CUSTOMER_SUPPORT": {
+      "label": "客戶支援",
+      "description": "客服中心、工單系統與客戶通訊。"
+    },
+    "DATA_STORAGE_AND_PROCESSING": {
+      "label": "資料儲存與處理",
+      "description": "資料庫、資料倉儲與資料處理管線。"
+    },
+    "DOCUMENT_MANAGEMENT": {
+      "label": "文件管理",
+      "description": "文件儲存、簽署與電子簽章。"
+    },
+    "EMPLOYEE_MANAGEMENT": {
+      "label": "員工管理",
+      "description": "人力資源、薪資計算與人事營運。"
+    },
+    "ENGINEERING": {
+      "label": "工程",
+      "description": "開發者工具與工程平台。"
+    },
+    "FINANCE": {
+      "label": "財務",
+      "description": "帳單、支付與會計。"
+    },
+    "IDENTITY_PROVIDER": {
+      "label": "身分驗證提供者",
+      "description": "身分驗證、單一登入（SSO）與身分管理。"
+    },
+    "IT": {
+      "label": "資訊科技 (IT)",
+      "description": "IT 管理與裝置管理。"
+    },
+    "MARKETING": {
+      "label": "行銷",
+      "description": "行銷、客戶關係管理（CRM）與受眾互動。"
+    },
+    "OFFICE_OPERATIONS": {
+      "label": "辦公室營運",
+      "description": "工作場所與辦公室營運。"
+    },
+    "OTHER": {
+      "label": "其他",
+      "description": "其他支援服務。"
+    },
+    "PASSWORD_MANAGEMENT": {
+      "label": "密碼管理",
+      "description": "憑證與機密管理。"
+    },
+    "PRODUCT_AND_DESIGN": {
+      "label": "產品與設計",
+      "description": "產品與設計工具。"
+    },
+    "PROFESSIONAL_SERVICES": {
+      "label": "專業服務",
+      "description": "顧問與專業服務。"
+    },
+    "RECRUITING": {
+      "label": "招募",
+      "description": "人才招募、尋訪與應徵者追蹤。"
+    },
+    "SALES": {
+      "label": "銷售",
+      "description": "業務賦能與客戶關係管理（CRM）。"
+    },
+    "SECURITY": {
+      "label": "資訊安全",
+      "description": "資安、監控與安全存取。"
+    },
+    "VERSION_CONTROL": {
+      "label": "版本控制",
+      "description": "原始碼控制與程式碼代管。"
+    }
+  }
+}

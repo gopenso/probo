@@ -1,0 +1,121 @@
+{
+  "topBar": {
+    "tagline": "合規入口",
+    "getAccess": "申請存取權限",
+    "openMenu": "開啟選單",
+    "closeMenu": "關閉選單",
+    "menuTitle": "選單",
+    "nav": {
+      "documents": "文件",
+      "subprocessors": "次處理者",
+      "updates": "最新動態",
+      "requests": "隱私請求"
+    }
+  },
+  "userMenu": {
+    "subscribe": "訂閱最新動態",
+    "subscribed": "已訂閱最新動態",
+    "signOut": "登出",
+    "signOutFailed": "無法登出",
+    "switchToDarkMode": "切換至深色模式",
+    "switchToLightMode": "切換至淺色模式"
+  },
+  "common": {
+    "error": "發生錯誤",
+    "previousPage": "上一頁",
+    "nextPage": "下一頁",
+    "pageOf": "第 {{current}} 頁，共 {{total}} 頁",
+    "zoomOut": "縮小",
+    "zoomIn": "放大"
+  },
+  "auth": {
+    "requestAccess": {
+      "success": "已提交存取申請"
+    },
+    "fullName": {
+      "title": "輸入您的姓名",
+      "label": "姓名",
+      "placeholder": "王小明",
+      "required": "請輸入姓名",
+      "tooShort": "姓名過短",
+      "submit": "繼續"
+    },
+    "errors": {
+      "fullNameFailed": "儲存姓名失敗，請重試。",
+      "requestFailed": "提交存取申請失敗，請重試。"
+    }
+  },
+  "home": {
+    "heroTitle": "{{name}} 的合規專區。",
+    "heroDescription": "歡迎瀏覽我們的合規入口。您可以在此查閱我們的安全文件與各項認證。",
+    "sections": {
+      "compliance": "合規",
+      "securityCommitments": "安全承諾",
+      "trustedBy": "深受信賴",
+      "recentUpdates": "最新動態"
+    },
+    "compliance": {
+      "viewDocuments": "檢視文件"
+    },
+    "recentUpdates": {
+      "viewAll": "檢視全部"
+    }
+  },
+  "notFound": {
+    "title": "找不到頁面",
+    "description": "您尋找的頁面不存在或已被移動。",
+    "backHome": "返回首頁"
+  },
+  "errors": {
+    "notFound": {
+      "title": "找不到頁面",
+      "description": "您尋找的頁面不存在或可能已被移動。"
+    },
+    "forbidden": {
+      "title": "存取遭拒",
+      "description": "您沒有權限檢視此頁面。請申請存取權限或返回合規入口。"
+    },
+    "serverError": {
+      "title": "發生錯誤",
+      "description": "系統發生非預期的錯誤，請稍後重試；若問題持續發生，請聯繫支援團隊。"
+    },
+    "generic": {
+      "title": "無法載入頁面",
+      "description": "我們無法載入此頁面，請稍後重試；若問題持續發生，請聯繫支援團隊。"
+    },
+    "actions": {
+      "backToCompliancePortal": "返回合規入口",
+      "tryAgain": "重試",
+      "contactSupport": "聯繫支援團隊",
+      "requestAccess": "申請存取權限"
+    },
+    "inline": {
+      "message": "無法載入內容",
+      "retry": "重試"
+    }
+  },
+  "footer": {
+    "poweredBy": "技術支援"
+  },
+  "pagination": {
+    "previous": "上一頁",
+    "next": "下一頁"
+  },
+  "locale": {
+    "label": "語言",
+    "updateFailed": "無法更新語言設定",
+    "mismatch": {
+      "message": "您目前正在以 {{language}} 瀏覽此頁面。",
+      "switchToMine": "切換為 {{language}}",
+      "useThis": "將 {{language}} 設為我的預設語言",
+      "dismiss": "關閉"
+    }
+  },
+  "nda": {
+    "unsignedBanner": {
+      "message": "簽署保密協議（NDA）以存取受限文件。",
+      "sign": "審閱並簽署",
+      "dismiss": "關閉"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "title": "文件",
+  "tabs": {
+    "all": "全部",
+    "public": "公開",
+    "restricted": "受限"
+  },
+  "sections": {
+    "reports": "合規報告"
+  },
+  "types": {
+    "OTHER": "其他",
+    "GOVERNANCE": "治理",
+    "POLICY": "政策",
+    "PROCEDURE": "程序",
+    "PLAN": "計畫",
+    "REGISTER": "登記冊",
+    "RECORD": "紀錄",
+    "REPORT": "報告",
+    "TEMPLATE": "範本",
+    "STATEMENT_OF_APPLICABILITY": "適用性聲明"
+  },
+  "actions": {
+    "view": "檢視",
+    "getAccess": "申請存取權限",
+    "requested": "已申請存取權限"
+  },
+  "selection": {
+    "count": "已選取 {{count}} 項",
+    "clear": "清除選取",
+    "selectAll": "全選",
+    "requestAccess": "申請存取權限 ({{count}})",
+    "selectRow": "選取 {{title}}"
+  },
+  "empty": {
+    "title": "尚無可用文件",
+    "description": "此合規入口尚未發布任何文件。",
+    "filteredTitle": "沒有符合此篩選條件的文件",
+    "filteredDescription": "請嘗試切換至其他分頁以檢視可用文件。"
+  },
+  "viewer": {
+    "back": "文件",
+    "copyLink": "複製連結",
+    "linkCopied": "已將連結複製到剪貼簿",
+    "download": "下載",
+    "previewUnavailable": "無法預覽",
+    "downloadToView": "此處無法預覽此檔案類型，請下載後檢視。",
+    "locked": {
+      "title": "需要存取權限",
+      "description": "您尚未取得此文件的存取權限。",
+      "signNda": "審閱並簽署保密協議"
+    }
+  }
+}

@@ -24,10 +24,11 @@ import {
   isUrlLocale,
   localizedPath,
   resolveUrlLocale,
+  type UrlLocale,
 } from "./locale";
 
 // Ensures `/:lang` is a supported short tag. Legacy unprefixed URLs
-// (/documents) and unknown two-letter tags are rewritten to a guessed locale.
+// (/documents) and unknown locale tags are rewritten to a guessed locale.
 export function localeLayoutLoader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const appPath = url.pathname || "/";
@@ -38,6 +39,15 @@ export function localeLayoutLoader({ request }: LoaderFunctionArgs) {
     return null;
   }
 
+  // Canonicalize uppercase/mixed-case locale prefix (e.g. /zh-TW -> /zh-tw).
+  if (first && isUrlLocale(first.toLowerCase())) {
+    const canonical = first.toLowerCase() as UrlLocale;
+    const rest = segments.slice(1);
+    const path = rest.length === 0 ? "/" : `/${rest.join("/")}`;
+    // eslint-disable-next-line @typescript-eslint/only-throw-error -- react-router redirect
+    throw redirect(localizedPath(canonical, path) + url.search);
+  }
+
   const guess = resolveUrlLocale();
 
   if (segments.length === 0) {
@@ -45,8 +55,8 @@ export function localeLayoutLoader({ request }: LoaderFunctionArgs) {
     throw redirect(`/${guess}${url.search}`);
   }
 
-  // Unknown two-letter tag (e.g. /xx/documents) → drop it and keep the rest.
-  if (/^[a-z]{2}$/.test(first)) {
+  // Unknown locale tag (e.g. /xx/documents, /xx-yy/documents) → drop it and keep the rest.
+  if (/^[a-z]{2}(-[a-z0-9]+)?$/i.test(first)) {
     const rest = segments.slice(1);
     const path = rest.length === 0 ? "/" : `/${rest.join("/")}`;
     // eslint-disable-next-line @typescript-eslint/only-throw-error -- react-router redirect

@@ -41,6 +41,7 @@ export const URL_LOCALES = [
   "tr",
   "uk",
   "zh",
+  "zh-tw",
 ] as const;
 
 export type UrlLocale = (typeof URL_LOCALES)[number];
@@ -62,6 +63,7 @@ const LANGUAGE_TO_URL_LOCALE: Record<SupportedLanguage, UrlLocale> = {
   "tr-TR": "tr",
   "uk-UA": "uk",
   "zh-CN": "zh",
+  "zh-TW": "zh-tw",
 };
 
 const URL_LOCALE_TO_LANGUAGE = Object.fromEntries(
@@ -83,7 +85,8 @@ export const URL_LOCALE_LABELS: Record<UrlLocale, string> = {
   pt: "Português",
   tr: "Türkçe",
   uk: "Українська",
-  zh: "中文",
+  zh: "简体中文",
+  "zh-tw": "繁體中文",
 };
 
 export function isUrlLocale(value: string | undefined | null): value is UrlLocale {

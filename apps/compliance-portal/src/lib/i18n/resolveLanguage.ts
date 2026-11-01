@@ -33,6 +33,7 @@ export const SUPPORTED_LANGUAGES = [
   "tr-TR",
   "uk-UA",
   "zh-CN",
+  "zh-TW",
 ] as const;
 
 export type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
@@ -56,16 +57,57 @@ const PREFIX_TO_LANGUAGE: Record<string, SupportedLanguage> = {
   zh: "zh-CN",
 };
 
+function matchChineseLanguage(tag: string): SupportedLanguage | null {
+  const lower = tag.toLowerCase();
+
+  // Traditional Chinese variants (Taiwan, Hong Kong, Macau, or Hant script)
+  if (
+    lower === "zh-tw" ||
+    lower.startsWith("zh-tw-") ||
+    lower === "zh-hant" ||
+    lower.startsWith("zh-hant-") ||
+    lower === "zh-hk" ||
+    lower.startsWith("zh-hk-") ||
+    lower === "zh-mo" ||
+    lower.startsWith("zh-mo-")
+  ) {
+    return "zh-TW";
+  }
+
+  // Simplified Chinese variants (China, Singapore, or Hans script)
+  if (
+    lower === "zh-cn" ||
+    lower.startsWith("zh-cn-") ||
+    lower === "zh-hans" ||
+    lower.startsWith("zh-hans-") ||
+    lower === "zh-sg" ||
+    lower.startsWith("zh-sg-")
+  ) {
+    return "zh-CN";
+  }
+
+  return null;
+}
+
 // Collapse the browser's preferred languages to one of our supported locales
-// by matching the two-letter language prefix (e.g. any "fr*" tag maps to
-// fr-FR). Returns null when nothing matches — callers that need a guaranteed
-// locale should use resolveLanguage() instead.
+// by matching region/script variants (e.g. zh-TW -> zh-TW) and two-letter
+// language prefixes (e.g. any "fr*" tag maps to fr-FR). Returns null when
+// nothing matches — callers that need a guaranteed locale should use
+// resolveLanguage() instead.
 export function matchNavigatorLanguage(): SupportedLanguage | null {
   const candidates = navigator.languages?.length
     ? navigator.languages
     : [navigator.language];
 
   for (const tag of candidates) {
+    if (!tag) {
+      continue;
+    }
+    const chinese = matchChineseLanguage(tag);
+    if (chinese) {
+      return chinese;
+    }
+
     const prefix = tag.toLowerCase().split("-")[0];
     const language = PREFIX_TO_LANGUAGE[prefix];
     if (language) {

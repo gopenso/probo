@@ -1,0 +1,19 @@
+{
+  "title": "最新動態",
+  "subscribe": "訂閱最新動態",
+  "backToUpdates": "所有動態",
+  "empty": {
+    "title": "尚無最新動態。",
+    "description": "訂閱以在發布新動態時收到通知。"
+  },
+  "dialog": {
+    "title": "訂閱最新動態",
+    "description": "在我們發布新的合規動態、新增次處理者或展延各項認證時接收通知。",
+    "email": "電子郵件地址",
+    "consent": "訂閱即表示您同意接收來自 {{name}} 的合規動態。您可以隨時取消訂閱。",
+    "cancel": "取消",
+    "submit": "訂閱",
+    "successToast": "發布新動態時，您將收到通知。",
+    "unsubscribeToast": "您將不再收到動態通知。"
+  }
+}

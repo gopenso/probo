@@ -1,0 +1,71 @@
+{
+  "title": "隱私請求",
+  "newRequest": "新增隱私請求",
+  "loadMore": "載入更多",
+  "empty": {
+    "title": "尚無隱私請求",
+    "description": "與您的個人資料相關的隱私請求將顯示於此，方便您追蹤處理進度。"
+  },
+  "types": {
+    "ACCESS": "資料存取",
+    "DELETION": "資料刪除",
+    "RECTIFICATION": "資料更正",
+    "PORTABILITY": "資料可攜權",
+    "OBJECTION": "處理異議",
+    "COMPLAINT": "濫用檢舉"
+  },
+  "status": {
+    "TODO": "待處理",
+    "IN_PROGRESS": "處理中",
+    "DONE": "已完成",
+    "REJECTED": "已拒絕"
+  },
+  "typeOption": {
+    "ACCESS": "存取我的資料",
+    "DELETION": "刪除我的資料",
+    "RECTIFICATION": "更正我的資料",
+    "OBJECTION": "反對資料處理",
+    "COMPLAINT": "檢舉濫用行為"
+  },
+  "dialog": {
+    "title": "新增隱私請求",
+    "description": "提交與您的個人資料相關的請求（例如存取或刪除資料）。請選擇請求類型並填寫以下詳細資訊。",
+    "typeLabel": "請求類型",
+    "cancel": "取消",
+    "submit": "提交請求",
+    "success": {
+      "title": "請求已提交",
+      "description": "我們將處理您的請求，並於適用法規規定的時限內回覆。",
+      "close": "關閉"
+    }
+  },
+  "form": {
+    "name": "姓名",
+    "nameOptional": "您的姓名（選填）",
+    "namePlaceholder": "王小明",
+    "email": "電子郵件地址",
+    "deletionWarning": "資料刪除為永久操作且無法復原。基於法律義務，部分資料可能仍會依法保留。",
+    "details": {
+      "ACCESS": {
+        "label": "請求詳細說明",
+        "placeholder": "我希望索取與我的帳號相關的所有個人資料副本…"
+      },
+      "DELETION": {
+        "label": "刪除請求範圍",
+        "placeholder": "請刪除我所有的個人資料，包括…"
+      },
+      "RECTIFICATION": {
+        "label": "需要更正的內容",
+        "placeholder": "以下資訊不正確…"
+      },
+      "OBJECTION": {
+        "label": "您反對的事項",
+        "placeholder": "我反對將我的資料用於…"
+      },
+      "COMPLAINT": {
+        "label": "問題說明",
+        "placeholder": "我發現…"
+      }
+    }
+  }
+}

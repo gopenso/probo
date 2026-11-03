@@ -4,10 +4,13 @@ on:
   push:
     branches:
       - coolify
+  schedule:
+    # 每週一 02:00 UTC (台灣時間 10:00) 自動檢查官方更新並建置
+    - cron: '0 2 * * 1'
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   packages: write
 
 jobs:
@@ -18,7 +21,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
+          ref: coolify
+          fetch-depth: 0
           submodules: recursive
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sync with upstream Probo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git remote add upstream https://github.com/getprobo/probo.git || true
+          git fetch upstream main
+
+          # Fast-forward fork main to upstream main
+          git push origin upstream/main:main || true
+
+          # Merge upstream main into coolify branch
+          git merge upstream/main -m "Merge latest upstream changes from getprobo/probo"
+          git push origin coolify || true
 
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -87,3 +107,10 @@ jobs:
           tags: |
             ghcr.io/${{ steps.repo_owner.outputs.owner }}/probo:latest
             ghcr.io/${{ steps.repo_owner.outputs.owner }}/probo:${{ github.sha }}
+
+      - name: Trigger Coolify Redeploy
+        if: env.COOLIFY_WEBHOOK_URL != ''
+        env:
+          COOLIFY_WEBHOOK_URL: ${{ secrets.COOLIFY_WEBHOOK_URL }}
+        run: |
+          curl -s -X POST "${COOLIFY_WEBHOOK_URL}"

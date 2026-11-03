@@ -39,19 +39,21 @@ const (
 	slackMethodAssistantSetStatus   = "assistant.threads.setStatus"
 	slackMethodAppsUninstall        = "apps.uninstall"
 	slackMethodAuthTest             = "auth.test"
-	slackMethodConversationsList    = "conversations.list"
 	slackMethodConversationsOpen    = "conversations.open"
 	slackMethodConversationsReplies = "conversations.replies"
 	slackMethodPostEphemeral        = "chat.postEphemeral"
 	slackMethodPostMessage          = "chat.postMessage"
 	slackMethodReactionsAdd         = "reactions.add"
 	slackMethodUpdateMessage        = "chat.update"
+	slackMethodUsersConversations   = "users.conversations"
 
-	// Slack conversations.list max page size. One request is enough for
-	// typical workspaces; the picker does not page further in the UI.
-	conversationsPageSize = 1000
-	threadRepliesPageSize = 200
-	slackHTTPTimeout      = 30 * time.Second
+	// users.conversations has no name query. The picker pages 50
+	// channels. Lookup scans with a larger page so finding one
+	// channel stays a short walk.
+	conversationPickerPageSize = 50
+	conversationLookupPageSize = 1000
+	threadRepliesPageSize      = 200
+	slackHTTPTimeout           = 30 * time.Second
 )
 
 type (

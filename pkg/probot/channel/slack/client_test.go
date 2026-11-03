@@ -181,10 +181,10 @@ func TestClientListConversations(t *testing.T) {
 					http.HandlerFunc(
 						func(w http.ResponseWriter, r *http.Request) {
 							assert.Equal(t, http.MethodGet, r.Method)
-							assert.Equal(t, "/api/conversations.list", r.URL.Path)
+							assert.Equal(t, "/api/users.conversations", r.URL.Path)
 							assert.Equal(t, tt.wantCursor, r.URL.Query().Get("cursor"))
 							assert.Equal(t, "true", r.URL.Query().Get("exclude_archived"))
-							assert.Equal(t, "1000", r.URL.Query().Get("limit"))
+							assert.Equal(t, "50", r.URL.Query().Get("limit"))
 							assert.Equal(t, "public_channel,private_channel", r.URL.Query().Get("types"))
 							assert.Equal(t, "Bearer "+testBotToken, r.Header.Get("Authorization"))
 
@@ -199,7 +199,11 @@ func TestClientListConversations(t *testing.T) {
 				)
 				t.Cleanup(server.Close)
 
-				page, err := newTestClient(server.URL+"/api").ListConversations(t.Context(), tt.cursor)
+				page, err := newTestClient(server.URL+"/api").ListConversations(
+					t.Context(),
+					tt.cursor,
+					conversationPickerPageSize,
+				)
 				require.NoError(t, err)
 				assert.Equal(
 					t,
@@ -213,6 +217,40 @@ func TestClientListConversations(t *testing.T) {
 			},
 		)
 	}
+}
+
+func TestClientListConversations_OmittedMembership(t *testing.T) {
+	t.Parallel()
+
+	server := httptest.NewServer(
+		http.HandlerFunc(
+			func(w http.ResponseWriter, r *http.Request) {
+				assert.Equal(t, "/api/users.conversations", r.URL.Path)
+
+				_, err := w.Write(
+					[]byte(
+						`{"ok":true,"channels":[{"id":"C1","name":"general","is_archived":false}]}`,
+					),
+				)
+				require.NoError(t, err)
+			},
+		),
+	)
+	t.Cleanup(server.Close)
+
+	page, err := newTestClient(server.URL+"/api").ListConversations(
+		t.Context(),
+		"",
+		conversationPickerPageSize,
+	)
+	require.NoError(t, err)
+	assert.Equal(
+		t,
+		[]Conversation{
+			{ID: "C1", Name: "general", IsMember: true, IsArchived: false},
+		},
+		page.Conversations,
+	)
 }
 
 func TestClientInstalledBotID(t *testing.T) {
@@ -509,7 +547,7 @@ func TestClientSlackAPIErrors(t *testing.T) {
 		{
 			name: "list conversations",
 			call: func(ctx context.Context, c *Client) error {
-				_, err := c.ListConversations(ctx, "")
+				_, err := c.ListConversations(ctx, "", conversationPickerPageSize)
 				return err
 			},
 		},

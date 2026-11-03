@@ -17,6 +17,7 @@ jobs:
   build:
     name: Build Frontend, Binaries and Docker Image
     runs-on: ubuntu-latest
+    environment: actions
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -109,8 +110,17 @@ jobs:
             ghcr.io/${{ steps.repo_owner.outputs.owner }}/probo:${{ github.sha }}
 
       - name: Trigger Coolify Redeploy
-        if: env.COOLIFY_WEBHOOK_URL != ''
         env:
           COOLIFY_WEBHOOK_URL: ${{ secrets.COOLIFY_WEBHOOK_URL }}
+          COOLIFY_TOKEN: ${{ secrets.COOLIFY_TOKEN }}
         run: |
-          curl -s -X POST "${COOLIFY_WEBHOOK_URL}"
+          if [ -n "${COOLIFY_WEBHOOK_URL}" ]; then
+            echo "Triggering Coolify redeploy..."
+            AUTH_HEADER=()
+            if [ -n "${COOLIFY_TOKEN}" ]; then
+              AUTH_HEADER=(-H "Authorization: Bearer ${COOLIFY_TOKEN}")
+            fi
+            curl -s -X GET "${COOLIFY_WEBHOOK_URL}" "${AUTH_HEADER[@]}"
+          else
+            echo "COOLIFY_WEBHOOK_URL is not set, skipping redeploy."
+          fi
